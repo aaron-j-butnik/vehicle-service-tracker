@@ -15,7 +15,7 @@ CREATE TABLE "public"."vehicle" (
 	"odometer" integer NOT NULL,
 	"notes" TEXT NOT NULL,
 	-- "createdAt" TIMESTAMP NOT NULL,
-	"userId" integer NOT NULL,
+	-- "userId" integer NOT NULL,
 	CONSTRAINT "vehicle_pk" PRIMARY KEY ("vehicleId")
 ) WITH (
   OIDS=FALSE
@@ -40,18 +40,18 @@ CREATE TABLE "public"."service" (
 
 
 
-CREATE TABLE "public"."users" (
-	"userId" serial NOT NULL,
-	"firstName" TEXT NOT NULL,
-	"lastName" TEXT NOT NULL,
-	-- "createdAt" TIMESTAMP NOT NULL,
-	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
-) WITH (
-  OIDS=FALSE
-);
+-- CREATE TABLE "public"."users" (
+-- 	"userId" serial NOT NULL,
+-- 	"firstName" TEXT NOT NULL,
+-- 	"lastName" TEXT NOT NULL,
+-- 	-- "createdAt" TIMESTAMP NOT NULL,
+-- 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
+-- ) WITH (
+--   OIDS=FALSE
+-- );
 
 
 
-ALTER TABLE "vehicle" ADD CONSTRAINT "vehicle_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+-- ALTER TABLE "vehicle" ADD CONSTRAINT "vehicle_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
 ALTER TABLE "service" ADD CONSTRAINT "service_fk0" FOREIGN KEY ("vehicleId") REFERENCES "vehicle"("vehicleId");
