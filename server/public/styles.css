@@ -1,0 +1,63 @@
+.navbar {
+  background-color: #ffc107;
+  width: 80%;
+  margin: auto;
+  max-width: 1124px;
+}
+
+.home-container {
+  background-image: url("main-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.icon-links {
+  text-align: right;
+}
+
+.icon {
+  text-align: right;
+  display: inline-block;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.logo,
+.icon-logo {
+  color: whitesmoke;
+}
+
+header {
+  width: 100%;
+  background-color: #ffc107;
+}
+
+/* my garage styles */
+
+.my-garage-div {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.empty-garage {
+  color: rgb(147, 8, 8);
+}
+
+.my-garage-title {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 2px solid black;
+  padding-bottom: 1.5rem;
+}
+
+.btn-add-vehicle {
+  position: absolute;
+  right: 0;
+}
