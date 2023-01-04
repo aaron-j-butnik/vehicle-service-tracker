@@ -5,29 +5,42 @@ export default class MyGarage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVehicleFormOpen: false
+      vehicles: []
     };
-    this.clickHandler = this.clickHandler.bind(this);
   }
 
-  clickHandler() {
-    this.setState({ isVehicleFormOpen: true });
+  componentDidMount() {
+    fetch('/api/vehicleData')
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          vehicles: data
+        })
+      );
   }
 
   render() {
+
     return (
       <div className="my-garage-div">
         <div className="my-garage-title">
-          <h1>
-            My Garage
-          </h1>
-          <a className='btn-add-vehicle' href='#new-vehicle'>Add Vehicle</a>
+          <h1>My Garage</h1>
+          <a className="btn-add-vehicle" href="#new-vehicle">
+            Add Vehicle
+          </a>
         </div>
         <div className="empty-garage">
-          Your garage is currently empty
+          {this.state.vehicles.length === 0
+            ? 'Your garage is currently empty'
+            : this.state.vehicles.map(vehicle => (
+              <div key={vehicle.vehicleId}>
+                {vehicle.year} {vehicle.make} {vehicle.model}
+                <a href={'#edit-vehicle?id=' + vehicle.vehicleId}>Edit Vehicle</a>
+                {/* <button>Edit Vehicle</button> */}
+              </div>
+            ))}
         </div>
       </div>
     );
   }
-
 }

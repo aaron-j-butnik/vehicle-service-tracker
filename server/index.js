@@ -29,6 +29,21 @@ app.use(staticMiddleware);
 //   res.json({ hello: 'world' });
 // });
 
+app.get('/api/vehicleData', (req, res, next) => {
+  const sql = `
+    select "vehicleId", "year", "make", "model", "licensePlate", "odometer", "notes"
+    from "vehicle"
+    `;
+  db.query(sql)
+    .then(result => {
+      const vehicles = result.rows;
+      res.status(200).json(vehicles);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.post('/api/vehicleData', (req, res, next) => {
   const { year, make, model, licensePlate, odometer, notes } = req.body;
   if (!year || !make || !model || !licensePlate || !odometer || !notes) {

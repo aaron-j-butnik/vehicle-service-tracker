@@ -21,24 +21,30 @@ export default class AddVehicleForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.setState({ error: '' });
 
     // TODO: Send the data to the back-end (api)
     fetch('/api/vehicleData', {
       method: 'POST',
-      body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
-      }
-    });
-    // .then(res => res.json())
-    // .then(data => {
-
-    // });
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          this.setState({ error: data.error });
+        } else {
+          window.location.hash = 'my-garage';
+        }
+      });
   }
 
   render() {
     return (
       <div className="form-container">
+        {this.state.error}
         <form className="w-100" onSubmit={this.handleSubmit}>
           <div className="mb-3">
             <label className="form-label">
@@ -114,7 +120,7 @@ export default class AddVehicleForm extends React.Component {
               />
             </label>
             <div className="vehicle-cancel-save-btns">
-              <a className="btn-cancel-vehicle" type="submit">
+              <a className="btn-cancel-vehicle" href="#my-garage">
                 Cancel
               </a>
               <button className="btn-save-vehicle" type="submit">
