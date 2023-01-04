@@ -47,7 +47,7 @@ app.get('/api/vehicleData', (req, res, next) => {
 app.post('/api/vehicleData', (req, res, next) => {
   const { year, make, model, licensePlate, odometer, notes } = req.body;
   if (!year || !make || !model || !licensePlate || !odometer || !notes) {
-    throw new ClientError(400, 'Error: Year, make, model, license plate, odometer, and notes are required fields');
+    throw new ClientError(400, 'Error: Year, make, model, license plate, odometer, and notes are required fields.');
   } else if (isNaN(year) || isNaN(odometer)) {
     throw new ClientError(400, 'Error: Year and odometer must be a number, with no commas.');
   }

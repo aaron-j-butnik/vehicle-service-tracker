@@ -138,6 +138,11 @@ header {
   color: lightgrey;
 }
 
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
 /* garage card styles */
 
 .garage-card-container {

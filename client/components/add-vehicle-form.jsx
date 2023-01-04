@@ -23,7 +23,6 @@ export default class AddVehicleForm extends React.Component {
     event.preventDefault();
     this.setState({ error: '' });
 
-    // TODO: Send the data to the back-end (api)
     fetch('/api/vehicleData', {
       method: 'POST',
       headers: {
@@ -38,17 +37,18 @@ export default class AddVehicleForm extends React.Component {
         } else {
           window.location.hash = 'my-garage';
         }
-      });
+      })
+      .catch(err => console.error('Error:', err));
   }
 
   render() {
     return (
       <div className="form-container">
-        {this.state.error}
+        <div className="error-message">{this.state.error}</div>
         <form className="w-100" onSubmit={this.handleSubmit}>
           <div className="mb-3">
             <label className="form-label">
-              Year
+              Year:
               <input
                 type="text"
                 name="year"
@@ -60,7 +60,7 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              Make
+              Make:
               <input
                 type="text"
                 name="make"
@@ -72,7 +72,7 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              Model
+              Model:
               <input
                 type="text"
                 name="model"
@@ -84,7 +84,7 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              License Plate
+              License Plate:
               <input
                 type="text"
                 name="licensePlate"
@@ -96,7 +96,7 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              Current Odometer
+              Current Odometer:
               <input
                 type="text"
                 name="odometer"
@@ -108,7 +108,7 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label vehicle-notes-text-area">
-              Notes
+              Notes:
               <textarea
                 name="notes"
                 id=""
@@ -117,6 +117,7 @@ export default class AddVehicleForm extends React.Component {
                 onChange={this.handleInput}
                 value={this.state.notes}
                 className="form-control"
+                placeholder='Additional notes here...'
               />
             </label>
             <div className="vehicle-cancel-save-btns">

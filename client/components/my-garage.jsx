@@ -17,7 +17,8 @@ export default class MyGarage extends React.Component {
         this.setState({
           vehicles: data
         })
-      );
+      )
+      .catch(err => console.error('Error:', err));
   }
 
   render() {
