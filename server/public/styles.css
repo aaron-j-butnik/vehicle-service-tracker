@@ -137,3 +137,76 @@ header {
 .btn-save-vehicle:hover {
   color: lightgrey;
 }
+
+/* garage card styles */
+
+.garage-card-container {
+  background-color: lightgrey;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  max-width: 575px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.garage-card-div {
+  color: black;
+  text-align: left;
+  padding: 1rem 2rem;
+}
+
+.arrow-btn {
+  margin-right: 1rem;
+}
+
+.vehicle-details {
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-info,
+.service-info {
+  margin-bottom: 0.25rem;
+}
+
+.garage-card-btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  padding-top: 1rem;
+}
+
+.add-service-btn {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #28a745;
+  padding: 0.25rem 1rem;
+  width: 9rem;
+  text-align: center;
+}
+
+.edit-vehicle-btn {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #ffc107;
+  padding: 0.25rem 1rem;
+  width: 9rem;
+  text-align: center;
+  margin: 0 0.5rem;
+}
+
+.delete-vehicle-btn {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #f00;
+  padding: 0.25rem 1rem;
+  width: 9rem;
+  text-align: center;
+}
