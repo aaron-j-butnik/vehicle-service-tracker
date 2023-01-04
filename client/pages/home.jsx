@@ -1,10 +1,10 @@
 import React from 'react';
-import HelloWorld from '../components/hello-world';
+import MyGarage from '../components/my-garage';
 
 export default function Home(props) {
   return (
-    <div>
-      <HelloWorld />
+    <div className="home-container">
+      <MyGarage />
     </div>
   );
 }

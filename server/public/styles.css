@@ -1,0 +1,217 @@
+.navbar {
+  background-color: #ffc107;
+  width: 80%;
+  margin: auto;
+  max-width: 1124px;
+}
+
+.home-container {
+  background-image: url("main-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.icon-links {
+  text-align: right;
+}
+
+.icon {
+  text-align: right;
+  display: inline-block;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.logo,
+.icon-logo {
+  color: whitesmoke;
+}
+
+header {
+  width: 100%;
+  background-color: #ffc107;
+}
+
+/* my garage styles */
+
+.my-garage-div {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 3rem;
+  max-width: 1000px;
+}
+
+.empty-garage {
+  color: rgb(147, 8, 8);
+}
+
+.my-garage-title {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 2px solid black;
+  padding-bottom: 1.5rem;
+}
+
+.btn-add-vehicle {
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #28a745;
+  position: absolute;
+  right: 0;
+  padding: 0.25rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-add-vehicle:hover {
+  color: lightgrey;
+}
+
+/* add vehicle form styles */
+
+.add-vehicle-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 2px solid black;
+  padding-bottom: 1.5rem;
+}
+
+.add-vehicle-div {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 3rem;
+  max-width: 1000px;
+}
+
+.form-label {
+  width: 90%;
+  margin: auto;
+  text-align: left;
+  max-width: 500px;
+}
+
+.vehicle-cancel-save-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+  max-width: 500px;
+}
+
+.btn-save-vehicle {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #28a745;
+  padding: 0.25rem 1rem;
+  width: 6rem;
+}
+
+.btn-cancel-vehicle {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: black;
+  background-color: lightgrey;
+  padding: 0.25rem 1rem;
+  width: 6rem;
+}
+
+.btn-cancel-vehicle:hover {
+  color: rgb(147, 8, 8);
+}
+
+.btn-save-vehicle:hover {
+  color: lightgrey;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+/* garage card styles */
+
+.garage-card-container {
+  background-color: lightgrey;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  max-width: 575px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.garage-card-div {
+  color: black;
+  text-align: left;
+  padding: 1rem 2rem;
+}
+
+.arrow-btn {
+  margin-right: 1rem;
+}
+
+.vehicle-details {
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-info,
+.service-info {
+  margin-bottom: 0.25rem;
+}
+
+.garage-card-btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  padding-top: 1rem;
+}
+
+.add-service-btn {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #28a745;
+  padding: 0.25rem 1rem;
+  width: 9rem;
+  text-align: center;
+}
+
+.edit-vehicle-btn {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #ffc107;
+  padding: 0.25rem 1rem;
+  width: 9rem;
+  text-align: center;
+  margin: 0 0.5rem;
+}
+
+.delete-vehicle-btn {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #f00;
+  padding: 0.25rem 1rem;
+  width: 9rem;
+  text-align: center;
+}
