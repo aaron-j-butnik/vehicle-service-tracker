@@ -43,6 +43,7 @@ header {
   margin-right: auto;
   text-align: center;
   padding-top: 3rem;
+  max-width: 1000px;
 }
 
 .empty-garage {
@@ -59,16 +60,80 @@ header {
 }
 
 .btn-add-vehicle {
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #28a745;
   position: absolute;
   right: 0;
+  padding: 0.25rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-add-vehicle:hover {
+  color: lightgrey;
 }
 
 /* add vehicle form styles */
 
-.card {
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  width: 20rem;
+.add-vehicle-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 2px solid black;
+  padding-bottom: 1.5rem;
+}
+
+.add-vehicle-div {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 3rem;
+  max-width: 1000px;
+}
+
+.form-label {
+  width: 90%;
+  margin: auto;
+  text-align: left;
+  max-width: 500px;
+}
+
+.vehicle-cancel-save-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+  max-width: 500px;
+}
+
+.btn-save-vehicle {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: whitesmoke;
+  background-color: #28a745;
+  padding: 0.25rem 1rem;
+  width: 6rem;
+}
+
+.btn-cancel-vehicle {
+  border: none;
+  text-decoration: none;
+  border-radius: 6px;
+  color: black;
+  background-color: lightgrey;
+  padding: 0.25rem 1rem;
+  width: 6rem;
+}
+
+.btn-cancel-vehicle:hover {
+  color: rgb(147, 8, 8);
+}
+
+.btn-save-vehicle:hover {
+  color: lightgrey;
 }

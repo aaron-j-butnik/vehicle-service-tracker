@@ -21,7 +21,7 @@ export default class MyGarage extends React.Component {
           <h1>
             My Garage
           </h1>
-          <a className='btn btn-add-vehicle' href='#new-vehicle'>Add Vehicle</a>
+          <a className='btn-add-vehicle' href='#new-vehicle'>Add Vehicle</a>
         </div>
         <div className="empty-garage">
           Your garage is currently empty

@@ -1,13 +1,11 @@
 import React from 'react';
 import AddVehicleForm from '../components/add-vehicle-form';
 
-function AddVehiclePage() {
+export default function AddVehiclePage() {
   return (
-    <section>
-      <h1>Add Vehicle</h1>
+    <div className="add-vehicle-div">
+      <h1 className="add-vehicle-header">Add Vehicle</h1>
       <AddVehicleForm />
-    </section>
+    </div>
   );
 }
-
-export default AddVehiclePage;
