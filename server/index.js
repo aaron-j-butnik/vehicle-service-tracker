@@ -67,6 +67,37 @@ app.post('/api/vehicleData', (req, res, next) => {
     });
 });
 
+app.put('/api/vehicleData/:vehicleId', (req, res, next) => {
+  const { vehicleId } = req.params;
+
+  const { year, make, model, licensePlate, odometer, notes } = req.body;
+  if (!year || !make || !model || !licensePlate || !odometer || !notes) {
+    throw new ClientError(400, 'Error: Year, make, model, license plate, odometer, and notes are required fields.');
+  } else if (isNaN(year) || isNaN(odometer)) {
+    throw new ClientError(400, 'Error: Year and odometer must be a number, with no commas.');
+  }
+  const sql = `
+    update "vehicle"
+    set "year" = $1,
+        "make" = $2,
+       "model" = $3,
+    "licensePlate" = $4,
+    "odometer" = $5,
+   "notes" = $6
+    where "vehicleId" = $7
+    returning *
+    `;
+  const params = [year, make, model, licensePlate, odometer, notes, vehicleId];
+  db.query(sql, params)
+    .then(result => {
+      const [vehicle] = result.rows;
+      res.status(201).json(vehicle);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

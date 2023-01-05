@@ -38,7 +38,7 @@ export default class MyGarage extends React.Component {
               <Card className="garage-card-container" key={vehicle.vehicleId}>
                 <div className="garage-card-div">
                   <h4 className="garage-card-title">
-                    <FaArrowAltCircleDown className='arrow-btn'/>
+                    <FaArrowAltCircleDown className="arrow-btn" />
                     {vehicle.year} {vehicle.make} {vehicle.model}
                   </h4>
                   <div className="vehicle-details">
@@ -60,18 +60,21 @@ export default class MyGarage extends React.Component {
                   </div>
                   <div className="garage-card-btns">
                     <a
+                        // TO DO: Add Service Button Functionality
                         className="add-service-btn"
-                        href={`#edit-vehicle?id=${vehicle.vehicleId}`}>
+                        href={`#add-service?id=${vehicle.vehicleId}`}>
                       Add Service
                     </a>
                     <a
+                        // TO DO: Delete Vehicle Button Functionality
                         className="edit-vehicle-btn"
                         href={`#edit-vehicle?id=${vehicle.vehicleId}`}>
                       Edit Vehicle
                     </a>
                     <a
+                        // TO DO: Delete Vehicle Button Functionality
                         className="delete-vehicle-btn"
-                        href={`#edit-vehicle?id=${vehicle.vehicleId}`}>
+                        href={`#delete-vehicle?id=${vehicle.vehicleId}`}>
                       Delete Vehicle
                     </a>
                   </div>
