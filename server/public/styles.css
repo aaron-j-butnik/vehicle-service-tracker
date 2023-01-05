@@ -164,10 +164,19 @@ header {
   margin-right: 1rem;
 }
 
+.arrow-btn:hover {
+  cursor: pointer;
+}
+
 .vehicle-details {
   border-bottom: 2px solid black;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.collapsed .vehicle-details,
+.collapsed .service-details {
+  display: none;
 }
 
 .vehicle-info,
@@ -214,4 +223,10 @@ header {
   padding: 0.25rem 1rem;
   width: 9rem;
   text-align: center;
+}
+
+.add-service-btn:hover,
+.edit-vehicle-btn:hover,
+.delete-vehicle-btn:hover {
+  color: lightgrey;
 }

@@ -44,6 +44,24 @@ app.get('/api/vehicleData', (req, res, next) => {
     });
 });
 
+app.get('/api/vehicleData/:vehicleId', (req, res, next) => {
+  const { vehicleId } = req.params;
+  const sql = `
+    select "vehicleId", "year", "make", "model", "licensePlate", "odometer", "notes"
+    from "vehicle"
+    where "vehicleId" = $1
+    `;
+  const params = [vehicleId];
+  db.query(sql, params)
+    .then(result => {
+      const [vehicle] = result.rows;
+      res.status(200).json(vehicle);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.post('/api/vehicleData', (req, res, next) => {
   const { year, make, model, licensePlate, odometer, notes } = req.body;
   if (!year || !make || !model || !licensePlate || !odometer || !notes) {

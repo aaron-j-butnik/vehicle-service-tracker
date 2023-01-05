@@ -6,9 +6,14 @@ export default class MyGarage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      vehicles: []
+      vehicles: [],
+      openVehicleCardId: null
     };
   }
+
+  // handleBtnClick() {
+  //   this.setState({openVehicleCardId: })
+  // }
 
   componentDidMount() {
     fetch('/api/vehicleData')
@@ -35,10 +40,19 @@ export default class MyGarage extends React.Component {
           {this.state.vehicles.length === 0
             ? 'Your garage is currently empty'
             : this.state.vehicles.map(vehicle => (
-              <Card className="garage-card-container" key={vehicle.vehicleId}>
-                <div className="garage-card-div">
+              <Card
+                  className="garage-card-container "
+                  key={vehicle.vehicleId}>
+                <div className={'garage-card-div ' + (this.state.openVehicleCardId === vehicle.vehicleId ? '' : 'collapsed')}>
                   <h4 className="garage-card-title">
-                    <FaArrowAltCircleDown className="arrow-btn" />
+                    <FaArrowAltCircleDown
+                        className="arrow-btn"
+                        onClick={() =>
+                          this.setState({
+                            openVehicleCardId: vehicle.vehicleId
+                          })
+                        }
+                      />
                     {vehicle.year} {vehicle.make} {vehicle.model}
                   </h4>
                   <div className="vehicle-details">
@@ -66,7 +80,6 @@ export default class MyGarage extends React.Component {
                       Add Service
                     </a>
                     <a
-                        // TO DO: Delete Vehicle Button Functionality
                         className="edit-vehicle-btn"
                         href={`#edit-vehicle?id=${vehicle.vehicleId}`}>
                       Edit Vehicle

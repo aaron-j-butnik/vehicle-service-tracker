@@ -17,6 +17,23 @@ export default class EditVehicleForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const vehicleId = this.state.route.params.get('id');
+    fetch(`/api/vehicleData/${vehicleId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          year: data.year,
+          make: data.make,
+          model: data.model,
+          licensePlate: data.licensePlate,
+          odometer: data.odometer,
+          notes: data.notes
+        });
+      })
+      .catch(err => console.error('Error:', err));
+  }
+
   handleInput(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -24,8 +41,7 @@ export default class EditVehicleForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ error: '' });
-    // const vehicle = this.state.route.params;
-    // console.log(vehicle);
+
     const vehicleId = this.state.route.params.get('id');
 
     fetch(`/api/vehicleData/${vehicleId}`, {
