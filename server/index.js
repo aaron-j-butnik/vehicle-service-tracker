@@ -85,6 +85,30 @@ app.post('/api/vehicleData', (req, res, next) => {
     });
 });
 
+app.post('/api/serviceData/:vehicleId', (req, res, next) => {
+  const { vehicleId } = req.params;
+  const { serviceDate, servicePerformedBy, typeOfService, odometerAtService, cost, serviceNotes } = req.body;
+  if (!serviceDate || !servicePerformedBy || !typeOfService || !odometerAtService || !cost || !serviceNotes) {
+    throw new ClientError(400, 'Error: Date, service performed, type of service, odometer at service, cost, and service notes are required fields.');
+  } else if (isNaN(odometerAtService) || isNaN(cost)) {
+    throw new ClientError(400, 'Error: Cost and odometer must be a number, with no commas.');
+  }
+  const sql = `
+    insert into "service" ("serviceDate", "servicePerformedBy", "typeOfService", "odometerAtService", "cost", "serviceNotes", "vehicleId")
+    values ($1, $2, $3, $4, $5, $6, $7)
+    returning *
+    `;
+  const params = [serviceDate, servicePerformedBy, typeOfService, odometerAtService, cost, serviceNotes, vehicleId];
+  db.query(sql, params)
+    .then(result => {
+      const [service] = result.rows;
+      res.status(201).json(service);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.put('/api/vehicleData/:vehicleId', (req, res, next) => {
   const { vehicleId } = req.params;
 
