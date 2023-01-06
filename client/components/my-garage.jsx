@@ -11,10 +11,6 @@ export default class MyGarage extends React.Component {
     };
   }
 
-  // handleBtnClick() {
-  //   this.setState({openVehicleCardId: })
-  // }
-
   componentDidMount() {
     fetch('/api/vehicleData')
       .then(res => res.json())
