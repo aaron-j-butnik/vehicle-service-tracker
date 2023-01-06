@@ -55,7 +55,7 @@ export default class MyServices extends React.Component {
                     {service.year} {service.make} {service.model}
                   </h4>
                   <div className="vehicle-details">
-                    <h6 className="vehicle-info">Vehicle Info:</h6>
+                    <h6 className="vehicle-info">Service Info:</h6>
                     <p className="vehicle-info">
                       Service Performed by: {service.servicePerformedBy}
                     </p>
