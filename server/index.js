@@ -34,6 +34,7 @@ app.get('/api/vehicleData', (req, res, next) => {
            "odometer",
            "notes"
     from "vehicle"
+    order by "vehicleId"
     `;
   db.query(sql)
     .then(result => {
@@ -59,6 +60,7 @@ app.get('/api/serviceData', (req, res, next) => {
            "model"
     from "service"
     join "vehicle" using ("vehicleId")
+    order by "serviceId"
     `;
   db.query(sql)
     .then(result => {
