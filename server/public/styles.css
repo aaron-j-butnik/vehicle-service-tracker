@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css2?family=Quando&family=Rowdies:wght@400;700&display=swap";
+
 .navbar {
   background-color: #ffc107;
   width: 80%;
@@ -28,6 +30,7 @@
 .logo,
 .icon-logo {
   color: whitesmoke;
+  font-family: Rowdies, sans-serif;
 }
 
 header {
@@ -68,6 +71,7 @@ header {
   right: 0;
   padding: 0.25rem 1rem;
   margin-top: 0.5rem;
+  font-weight: bold;
 }
 
 .btn-add-vehicle:hover {
@@ -189,6 +193,7 @@ header {
   justify-content: space-between;
   padding: 0.5rem 0;
   padding-top: 1rem;
+  font-weight: bold;
 }
 
 .add-service-btn {

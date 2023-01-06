@@ -76,13 +76,13 @@ export default class MyServices extends React.Component {
                     <a
                         className="edit-vehicle-btn"
                         href={`#edit-service?id=${service.serviceId}`}>
-                      Edit Vehicle
+                      Edit Service
                     </a>
                     <a
                         // TO DO: Delete Vehicle Button Functionality
                         className="delete-vehicle-btn"
                         href={`#delete-service?id=${service.serviceId}`}>
-                      Delete Vehicle
+                      Delete Service
                     </a>
                   </div>
                 </div>

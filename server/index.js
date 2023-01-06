@@ -96,6 +96,30 @@ app.get('/api/vehicleData/:vehicleId', (req, res, next) => {
     });
 });
 
+app.get('/api/serviceData/:serviceId', (req, res, next) => {
+  const { serviceId } = req.params;
+  const sql = `
+    select "serviceId",
+           "serviceDate",
+           "servicePerformedBy",
+           "typeOfService",
+           "odometerAtService",
+           "cost",
+           "serviceNotes"
+    from "service"
+    where "serviceId" = $1
+    `;
+  const params = [serviceId];
+  db.query(sql, params)
+    .then(result => {
+      const [service] = result.rows;
+      res.status(200).json(service);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.post('/api/vehicleData', (req, res, next) => {
   const { year, make, model, licensePlate, odometer, notes } = req.body;
   if (!year || !make || !model || !licensePlate || !odometer || !notes) {

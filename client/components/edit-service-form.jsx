@@ -17,6 +17,23 @@ export default class EditServiceForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const serviceId = this.state.route.params.get('id');
+    fetch(`api/serviceData/${serviceId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          serviceDate: data.serviceDate,
+          servicePerformedBy: data.servicePerformedBy,
+          typeOfService: data.typeOfService,
+          odometerAtService: data.odometerAtService,
+          cost: data.cost,
+          serviceNotes: data.serviceNotes
+        });
+      })
+      .catch(err => console.error('Error:', err));
+  }
+
   handleInput(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
