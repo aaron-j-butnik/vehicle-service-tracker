@@ -1,7 +1,7 @@
 import React from 'react';
 import parseRoute from '../lib/parse-route';
 
-export default class AddServiceForm extends React.Component {
+export default class EditServiceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +27,7 @@ export default class AddServiceForm extends React.Component {
     const serviceId = this.state.route.params.get('id');
 
     fetch(`/api/serviceData/${serviceId}`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -125,7 +125,7 @@ export default class AddServiceForm extends React.Component {
               />
             </label>
             <div className="vehicle-cancel-save-btns">
-              <a className="btn-cancel-vehicle" href="#my-garage">
+              <a className="btn-cancel-vehicle" href="#my-service">
                 Cancel
               </a>
               <button className="btn-save-vehicle" type="submit">
