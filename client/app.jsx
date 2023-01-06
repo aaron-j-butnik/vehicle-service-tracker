@@ -6,6 +6,8 @@ import '../server/public/styles.css';
 import parseRoute from './lib/parse-route';
 import AddVehiclePage from './pages/add-vehicle-page';
 import EditVehiclePage from './pages/edit-vehicle-page';
+import AddServicePage from './pages/add-service-page';
+import MyServicesPage from './pages/my-services-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,6 +33,8 @@ export default class App extends React.Component {
         {this.state.route.path === 'my-garage' && <Home />}
         {this.state.route.path === 'new-vehicle' && <AddVehiclePage />}
         {this.state.route.path === 'edit-vehicle' && <EditVehiclePage />}
+        {this.state.route.path === 'add-service' && <AddServicePage />}
+        {this.state.route.path === 'my-service' && <MyServicesPage />}
       </>
     );
   }

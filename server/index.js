@@ -22,16 +22,17 @@ const publicPath = path.join(__dirname, 'public');
 
 app.use(express.static(publicPath));
 app.use(express.json());
-
 app.use(staticMiddleware);
-
-// app.get('/api/hello', (req, res) => {
-//   res.json({ hello: 'world' });
-// });
 
 app.get('/api/vehicleData', (req, res, next) => {
   const sql = `
-    select "vehicleId", "year", "make", "model", "licensePlate", "odometer", "notes"
+    select "vehicleId",
+           "year",
+           "make",
+           "model",
+           "licensePlate",
+           "odometer",
+           "notes"
     from "vehicle"
     `;
   db.query(sql)
@@ -44,10 +45,41 @@ app.get('/api/vehicleData', (req, res, next) => {
     });
 });
 
+app.get('/api/serviceData', (req, res, next) => {
+  const sql = `
+    select "serviceId",
+           "serviceDate",
+           "servicePerformedBy",
+           "typeOfService",
+           "odometerAtService",
+           "cost",
+           "serviceNotes",
+           "year",
+           "make",
+           "model"
+    from "service"
+    join "vehicle" using ("vehicleId")
+    `;
+  db.query(sql)
+    .then(result => {
+      const services = result.rows;
+      res.status(200).json(services);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.get('/api/vehicleData/:vehicleId', (req, res, next) => {
   const { vehicleId } = req.params;
   const sql = `
-    select "vehicleId", "year", "make", "model", "licensePlate", "odometer", "notes"
+    select "vehicleId",
+           "year",
+           "make",
+           "model",
+           "licensePlate",
+           "odometer",
+           "notes"
     from "vehicle"
     where "vehicleId" = $1
     `;
@@ -85,6 +117,30 @@ app.post('/api/vehicleData', (req, res, next) => {
     });
 });
 
+app.post('/api/serviceData/:vehicleId', (req, res, next) => {
+  const { vehicleId } = req.params;
+  const { serviceDate, servicePerformedBy, typeOfService, odometerAtService, cost, serviceNotes } = req.body;
+  if (!serviceDate || !servicePerformedBy || !typeOfService || !odometerAtService || !cost || !serviceNotes) {
+    throw new ClientError(400, 'Error: Date, service performed, type of service, odometer at service, cost, and service notes are required fields.');
+  } else if (isNaN(odometerAtService) || isNaN(cost)) {
+    throw new ClientError(400, 'Error: Cost and odometer must be a number, with no commas.');
+  }
+  const sql = `
+    insert into "service" ("serviceDate", "servicePerformedBy", "typeOfService", "odometerAtService", "cost", "serviceNotes", "vehicleId")
+    values ($1, $2, $3, $4, $5, $6, $7)
+    returning *
+    `;
+  const params = [serviceDate, servicePerformedBy, typeOfService, odometerAtService, cost, serviceNotes, vehicleId];
+  db.query(sql, params)
+    .then(result => {
+      const [service] = result.rows;
+      res.status(201).json(service);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.put('/api/vehicleData/:vehicleId', (req, res, next) => {
   const { vehicleId } = req.params;
 
@@ -98,10 +154,10 @@ app.put('/api/vehicleData/:vehicleId', (req, res, next) => {
     update "vehicle"
     set "year" = $1,
         "make" = $2,
-       "model" = $3,
-    "licensePlate" = $4,
-    "odometer" = $5,
-   "notes" = $6
+        "model" = $3,
+        "licensePlate" = $4,
+        "odometer" = $5,
+        "notes" = $6
     where "vehicleId" = $7
     returning *
     `;
