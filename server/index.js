@@ -22,16 +22,17 @@ const publicPath = path.join(__dirname, 'public');
 
 app.use(express.static(publicPath));
 app.use(express.json());
-
 app.use(staticMiddleware);
-
-// app.get('/api/hello', (req, res) => {
-//   res.json({ hello: 'world' });
-// });
 
 app.get('/api/vehicleData', (req, res, next) => {
   const sql = `
-    select "vehicleId", "year", "make", "model", "licensePlate", "odometer", "notes"
+    select "vehicleId",
+           "year",
+           "make",
+           "model",
+           "licensePlate",
+           "odometer",
+           "notes"
     from "vehicle"
     `;
   db.query(sql)
@@ -44,10 +45,41 @@ app.get('/api/vehicleData', (req, res, next) => {
     });
 });
 
+app.get('/api/serviceData', (req, res, next) => {
+  const sql = `
+    select "serviceId",
+           "serviceDate",
+           "servicePerformedBy",
+           "typeOfService",
+           "odometerAtService",
+           "cost",
+           "serviceNotes",
+           "year",
+           "make",
+           "model"
+    from "service"
+    join "vehicle" using ("vehicleId")
+    `;
+  db.query(sql)
+    .then(result => {
+      const services = result.rows;
+      res.status(200).json(services);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.get('/api/vehicleData/:vehicleId', (req, res, next) => {
   const { vehicleId } = req.params;
   const sql = `
-    select "vehicleId", "year", "make", "model", "licensePlate", "odometer", "notes"
+    select "vehicleId",
+           "year",
+           "make",
+           "model",
+           "licensePlate",
+           "odometer",
+           "notes"
     from "vehicle"
     where "vehicleId" = $1
     `;
@@ -122,10 +154,10 @@ app.put('/api/vehicleData/:vehicleId', (req, res, next) => {
     update "vehicle"
     set "year" = $1,
         "make" = $2,
-       "model" = $3,
-    "licensePlate" = $4,
-    "odometer" = $5,
-   "notes" = $6
+        "model" = $3,
+        "licensePlate" = $4,
+        "odometer" = $5,
+        "notes" = $6
     where "vehicleId" = $7
     returning *
     `;

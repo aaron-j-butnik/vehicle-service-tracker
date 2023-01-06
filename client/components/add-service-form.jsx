@@ -1,15 +1,17 @@
 import React from 'react';
+import parseRoute from '../lib/parse-route';
 
-export default class AddVehicleForm extends React.Component {
+export default class AddServiceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       serviceDate: '',
       servicePerformedBy: '',
-      servicePerformed: '',
-      odometer: '',
+      typeOfService: '',
+      odometerAtService: '',
       cost: '',
-      notes: ''
+      serviceNotes: '',
+      route: parseRoute(window.location.hash)
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,10 +51,10 @@ export default class AddVehicleForm extends React.Component {
         <form className="w-100" onSubmit={this.handleSubmit}>
           <div className="mb-3">
             <label className="form-label">
-              Year:
+              Service Date:
               <input
                 type="text"
-                name="year"
+                name="serviceDate"
                 onChange={this.handleInput}
                 value={this.state.serviceDate}
                 className="form-control"
@@ -62,10 +64,10 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              Make:
+              Service Performed By:
               <input
                 type="text"
-                name="make"
+                name="servicePerformedBy"
                 onChange={this.handleInput}
                 value={this.state.servicePerformedBy}
                 className="form-control"
@@ -74,34 +76,34 @@ export default class AddVehicleForm extends React.Component {
           </div>
           <div className="mb-3">
             <label className="form-label">
-              Model:
+              Service Performed:
               <input
                 type="text"
-                name="model"
+                name="typeOfService"
                 onChange={this.handleInput}
-                value={this.state.servicePerformed}
+                value={this.state.typeOfService}
                 className="form-control"
               />
             </label>
           </div>
           <div className="mb-3">
             <label className="form-label">
-              License Plate:
+              Odometer at time of service:
               <input
                 type="text"
-                name="licensePlate"
+                name="odometerAtService"
                 onChange={this.handleInput}
-                value={this.state.odometer}
+                value={this.state.odometerAtService}
                 className="form-control"
               />
             </label>
           </div>
           <div className="mb-3">
             <label className="form-label">
-              Current Odometer:
+              Cost:
               <input
                 type="text"
-                name="odometer"
+                name="cost"
                 onChange={this.handleInput}
                 value={this.state.cost}
                 className="form-control"
@@ -112,12 +114,12 @@ export default class AddVehicleForm extends React.Component {
             <label className="form-label vehicle-notes-text-area">
               Notes:
               <textarea
-                name="notes"
+                name="serviceNotes"
                 id=""
                 cols="30"
                 rows="10"
                 onChange={this.handleInput}
-                value={this.state.notes}
+                value={this.state.serviceNotes}
                 className="form-control"
                 placeholder="Additional notes here..."
               />
