@@ -55,7 +55,7 @@ export default class MyServices extends React.Component {
                     {service.year} {service.make} {service.model}
                   </h4>
                   <div className="vehicle-details">
-                    <h6 className="vehicle-info">Vehicle Info:</h6>
+                    <h6 className="vehicle-info">Service Info:</h6>
                     <p className="vehicle-info">
                       Service Performed by: {service.servicePerformedBy}
                     </p>
@@ -76,13 +76,13 @@ export default class MyServices extends React.Component {
                     <a
                         className="edit-vehicle-btn"
                         href={`#edit-service?id=${service.serviceId}`}>
-                      Edit Vehicle
+                      Edit Service
                     </a>
                     <a
                         // TO DO: Delete Vehicle Button Functionality
                         className="delete-vehicle-btn"
                         href={`#delete-service?id=${service.serviceId}`}>
-                      Delete Vehicle
+                      Delete Service
                     </a>
                   </div>
                 </div>

@@ -34,6 +34,7 @@ app.get('/api/vehicleData', (req, res, next) => {
            "odometer",
            "notes"
     from "vehicle"
+    order by "vehicleId" desc
     `;
   db.query(sql)
     .then(result => {
@@ -59,6 +60,7 @@ app.get('/api/serviceData', (req, res, next) => {
            "model"
     from "service"
     join "vehicle" using ("vehicleId")
+    order by "serviceId" desc
     `;
   db.query(sql)
     .then(result => {
@@ -88,6 +90,30 @@ app.get('/api/vehicleData/:vehicleId', (req, res, next) => {
     .then(result => {
       const [vehicle] = result.rows;
       res.status(200).json(vehicle);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+app.get('/api/serviceData/:serviceId', (req, res, next) => {
+  const { serviceId } = req.params;
+  const sql = `
+    select "serviceId",
+           "serviceDate",
+           "servicePerformedBy",
+           "typeOfService",
+           "odometerAtService",
+           "cost",
+           "serviceNotes"
+    from "service"
+    where "serviceId" = $1
+    `;
+  const params = [serviceId];
+  db.query(sql, params)
+    .then(result => {
+      const [service] = result.rows;
+      res.status(200).json(service);
     })
     .catch(err => {
       next(err);
@@ -166,6 +192,37 @@ app.put('/api/vehicleData/:vehicleId', (req, res, next) => {
     .then(result => {
       const [vehicle] = result.rows;
       res.status(201).json(vehicle);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+app.put('/api/serviceData/:serviceId', (req, res, next) => {
+  const { serviceId } = req.params;
+
+  const { serviceDate, servicePerformedBy, typeOfService, odometerAtService, cost, serviceNotes } = req.body;
+  if (!serviceDate || !servicePerformedBy || !typeOfService || !odometerAtService || !cost || !serviceNotes) {
+    throw new ClientError(400, 'Error: Date, service performed, type of service, odometer at service, cost, and service notes are required fields.');
+  } else if (isNaN(odometerAtService) || isNaN(cost)) {
+    throw new ClientError(400, 'Error: Cost and odometer must be a number, with no commas.');
+  }
+  const sql = `
+    update "service"
+    set "serviceDate" = $1,
+        "servicePerformedBy" = $2,
+        "typeOfService" = $3,
+        "odometerAtService" = $4,
+        "cost" = $5,
+        "serviceNotes" = $6
+    where "serviceId" = $7
+    returning *
+    `;
+  const params = [serviceDate, servicePerformedBy, typeOfService, odometerAtService, cost, serviceNotes, serviceId];
+  db.query(sql, params)
+    .then(result => {
+      const [service] = result.rows;
+      res.status(201).json(service);
     })
     .catch(err => {
       next(err);
