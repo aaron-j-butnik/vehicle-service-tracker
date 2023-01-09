@@ -229,6 +229,25 @@ app.put('/api/serviceData/:serviceId', (req, res, next) => {
     });
 });
 
+app.delete('/api/serviceDataDelete/:serviceId', (req, res, next) => {
+  const { serviceId } = req.params;
+  const sql = `
+  delete
+  from "service"
+  where "serviceId" = $1
+  returning *
+  `;
+  const params = [serviceId];
+  db.query(sql, params)
+    .then(result => {
+      const [serviceDelete] = result.rows;
+      res.status(200).json(serviceDelete || null);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

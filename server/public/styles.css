@@ -234,4 +234,5 @@ header {
 .edit-vehicle-btn:hover,
 .delete-vehicle-btn:hover {
   color: lightgrey;
+  cursor: pointer;
 }
