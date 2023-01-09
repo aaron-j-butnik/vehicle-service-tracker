@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 export default class DeleteModal extends React.Component {
@@ -31,25 +30,22 @@ export default class DeleteModal extends React.Component {
     return (
       <Modal
         {...this.props}
-        size="lg"
+        size="sm"
         aria-labelledby="contained-modal-title-vcenter"
-        centered>
-        <Modal.Header closeButton>
+        centered
+        className="modal-container">
+        <div className="modal-title">
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Are you sure?
           </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.props.onHide}>Cancel</Button>
-          <Button onClick={this.deleteServiceId}>Delete</Button>
+        </div>
+        <div className="modal-text">
+          <p>Would you like to delete this entry?</p>
+          <p>This process cannot be undone.</p>
+        </div>
+        <Modal.Footer className="modal-footer">
+          <a className="modal-cancel-btn" onClick={this.props.onHide}>Cancel</a>
+          <a className ="modal-delete-btn" onClick={this.deleteServiceId}>Delete</a>
         </Modal.Footer>
       </Modal>
     );

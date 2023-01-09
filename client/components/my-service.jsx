@@ -30,7 +30,7 @@ export default class MyServices extends React.Component {
         </div>
         <div className="empty-garage">
           {this.state.services.length === 0
-            ? 'Currently no services on vehicles'
+            ? 'Currently no services for vehicles'
             : this.state.services.map(service => (
               <VehicleCard key={service.serviceId} service={service} />
             ))}
