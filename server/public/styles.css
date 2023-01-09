@@ -178,6 +178,13 @@ header {
   border-bottom: 2px solid black;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.service-details {
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .collapsed .vehicle-details,
