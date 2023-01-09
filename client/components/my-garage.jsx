@@ -83,7 +83,7 @@ export default class MyGarage extends React.Component {
                     <a
                         // TO DO: Delete Vehicle Button Functionality
                         className="delete-vehicle-btn"
-                        href={`#delete-vehicle?id=${vehicle.vehicleId}`}>
+                        >
                       Delete Vehicle
                     </a>
                   </div>
